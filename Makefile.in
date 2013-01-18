@@ -1,0 +1,24 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+utildir = @PUBRULE@
+pubdir = @prefix@
+srcdir = @srcdir@
+applib = FDL
+appname = @APPNAME@
+TAR = tar
+GZIP_ENV = --best
+
+export PACKAGE utildir pubdir applib appname
+
+SUBDIR= Apps Actions Data Scripts Images
+
+include $(utildir)/PubRule
+
+$(pubdir)/admin.php: admin.php
+	cp $< $@
+
+publish: $(pubdir)/admin.php
+
+clean:
+	/bin/rm -f *.*~ config.* Makefile configure $(appname)_init.php info.xml $(PACKAGE)-*webinst
+	/bin/rm -fr autom4te.cache

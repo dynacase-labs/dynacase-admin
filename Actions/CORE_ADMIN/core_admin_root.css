@@ -1,0 +1,83 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 75%;
+}
+
+#sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: none repeat scroll 0 0 rgb(244, 243, 241);
+    border-left: 4px solid rgb(204, 204, 204);
+    border-top: 4px solid rgb(204, 204, 204);
+    border-bottom: 4px solid rgb(204, 204, 204);
+}
+
+#content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20em;
+    right: 0;
+    width: auto;
+    padding: 15px;
+    border-right: 4px solid rgb(204, 204, 204);
+    border-top: 4px solid rgb(204, 204, 204);
+    border-bottom: 4px solid rgb(204, 204, 204);
+}
+
+#content iframe {
+    background-color: transparent;
+    border: 0 none transparent;
+    padding: 0;
+    width: 100%;
+}
+
+.app, .app * {
+    cursor: pointer;
+}
+
+.app{
+    cursor: pointer;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    border-top: 1px solid rgb(255, 255, 255);
+    border-right: 2px solid rgb(204, 204, 204);
+    background: none repeat scroll 0 0 rgb(244, 243, 241);
+    width: 20em;
+}
+
+.app .title {
+    font-weight: bold;
+}
+
+.app .description{
+    padding:10px;
+}
+
+.app.selected {
+    border-right: 2px solid rgb(255, 255, 255);
+    background: rgb(255, 255, 255);
+    border-right: none;
+}
+
+.app .btn-close {
+    visibility: hidden;
+    float: right;
+}
+
+.app.loaded .btn-close{
+    visibility: visible;
+}
+
+.app:hover,
+.app.selected:hover{
+    background: rgb(255, 255, 255);
+}
