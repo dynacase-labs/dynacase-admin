@@ -12,15 +12,22 @@
 </head>
 <body>
     <div id="header">
+        <div class="title">[TEXT:core_admin:Dynacase administration center]</div>
     </div>
     <div id="sidebar">
         [BLOCK ADMIN_APPS]
         <div data-appname="[NAME]" data-appurl="[URL]" class="app">
-            <span class="btn-close ui-icon ui-icon-circle-close" title="[TEXT:core_admin:unload this module]"></span>
-            <img src="[ICON_SRC]" alt="[ICON_ALT]"/><span class="title">[TITLE]</span>
-            <div class="description">
-                [DESCRIPTION]
+            <span class="btn-close" title="[TEXT:core_admin:unload this module]">×</span>
+            <div class="app-button">
+                <img src="[ICON_SRC]" alt="[ICON_ALT]"/>
+                <div class="content">
+                    <span class="title">[TITLE]</span>
+                    <div class="description">
+                        [DESCRIPTION]
+                    </div>
+                </div>
             </div>
+            <div class="clear"></div>
         </div>
         [ENDBLOCK ADMIN_APPS]
     </div>
