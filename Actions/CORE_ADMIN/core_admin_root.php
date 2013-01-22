@@ -42,7 +42,7 @@ SQL;
         $admin_apps[] = array(
             "NAME"          => $adminApp["name"],
             "URL"           => $appUrl,
-            "ICON_SRC"      => $action->parent->getImageLink($adminApp["icon"], false, 24),
+            "ICON_SRC"      => $action->parent->getImageLink($adminApp["icon"], false, 30),
             "ICON_ALT"      => $adminApp["name"],
             "TITLE"         => _($adminApp["short_name"]),
             "DESCRIPTION"   => _($adminApp["description"])
