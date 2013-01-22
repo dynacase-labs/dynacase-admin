@@ -28,6 +28,10 @@ div {
     padding: 5px 0 0 5px;
     border-bottom: 1px solid #bbb;
 }
+#header img {
+    height: 36px;
+    vertical-align: middle;
+}
 
 #content {
     position: absolute;
