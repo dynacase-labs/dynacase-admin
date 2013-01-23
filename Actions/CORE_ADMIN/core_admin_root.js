@@ -1,12 +1,18 @@
 (function ($, window, document) {
     "use strict";
-    var emptyIframeUrl = 'about:blank';
+    var emptyIframeUrl = 'about:blank',
+        unselectApplication,
+        unloadApplication,
+        onResize,
+        getApplicationIFrame,
+        selectApplication,
+        loadApplication;
 
-    var unselectApplication = function unselectApplication($app) {
+    unselectApplication = function unselectApplication($app) {
         $app.removeClass("selected");
     };
 
-    var unloadApplication = function unloadApplication($app) {
+    unloadApplication = function unloadApplication($app) {
         var appName, applicationIframe, appurl;
         appName = $app.data('appname');
         appurl = $app.data('appurl');
@@ -14,17 +20,18 @@
         applicationIframe.attr('src', emptyIframeUrl);
     };
 
-    var resizeIframe = function resizeIframe() {
-        var iframeHeight, $content;
-        $content = $("#content");
-        iframeHeight = $(window).height()
-            - $content.offset().top
-            - parseInt($content.css("padding-top"), 10)
-            - parseInt($content.css("padding-bottom"), 10);
-        $("iframe", $('#content')).height(iframeHeight - 5);
+    onResize = function onResize() {
+        var contentOffset, $window = $(window), windowHeight, $content = $("#content"), $sidebar = $("#sidebar");
+        contentOffset = $content.offset();
+        windowHeight = $window.height();
+
+        $content.outerWidth($window.width() - contentOffset.left);
+        $content.outerHeight(windowHeight - contentOffset.top);
+
+        $sidebar.outerHeight(windowHeight - $sidebar.offset().top);
     };
 
-    var getApplicationIFrame = function getApplicationIFrame(appName, appUrl) {
+    getApplicationIFrame = function getApplicationIFrame(appName, appUrl) {
         var iframeId, applicationIframe;
         iframeId = 'app-iframe-' + appName;
         applicationIframe = $('#' + iframeId);
@@ -54,13 +61,13 @@
         return applicationIframe;
     };
 
-    var selectApplication = function selectApplication($app) {
+    selectApplication = function selectApplication($app) {
         $app.addClass("selected")
             .siblings()
             .removeClass("selected");
     };
 
-    var loadApplication = function loadApplication($app) {
+    loadApplication = function loadApplication($app) {
         var appName, applicationIframe, appurl;
         appName = $app.data('appname');
         appurl = $app.data('appurl');
@@ -68,16 +75,16 @@
         applicationIframe.siblings()
             .hide();
         applicationIframe.show();
-        window.setTimeout(resizeIframe, 1);
         $app.addClass("loaded");
         return true;
     };
 
     $(document).ready(function () {
+        window.setTimeout(onResize, 1);
         $("#sidebar").on(
             'click',
             '.app',
-            function appSelected(event) {
+            function appSelected() {
                 var $this = $(this);
                 if (loadApplication($this)) {
                     selectApplication($this);
@@ -86,14 +93,14 @@
         ).on(
             'click',
             '.btn-close',
-            function appClosed(event) {
+            function appClosed() {
                 var $app = $(this).closest('.app');
-                unloadApplication($app)
+                unloadApplication($app);
             }
         );
         $(window).on(
             'resize',
-            resizeIframe
+            onResize
         );
     });
 }($, window, document));
