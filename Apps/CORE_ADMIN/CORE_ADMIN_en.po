@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZOO\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-21 14:06+0100\n"
+"PO-Revision-Date: 2010-01-12 15:35+0100\n"
+"Last-Translator: John Doe <john.doe@somewhere.org>\n"
+"Language-Team: English <distrib@somewhere.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#, php-format
+msgid "cannot write  %s"
+msgstr ""
+
+msgid "core_admin:Access to CORE_ADMIN"
+msgstr "Access to CORE_ADMIN application"
+
+msgid "core_admin:Access to administration application"
+msgstr "Access to administration application"
+
+msgid "core_admin:Dynacase administration center"
+msgstr "Dynacase administration center"
+
+msgid "core_admin:Main ihm"
+msgstr "Main IHM"
+
+msgid "core_admin:Unified interface exposing all admin applications"
+msgstr "Unified interface exposing all admin applications"
+
+msgid "core_admin:User must be authenticated"
+msgstr "User must be authenticated"
+
+msgid "core_admin:only administrators can access this area."
+msgstr "Only administrators can access this area"
+
+msgid "core_admin:unload this module"
+msgstr "unload this module"
+
+#, php-format
+msgid "csv file <%s> wroted"
+msgstr ""

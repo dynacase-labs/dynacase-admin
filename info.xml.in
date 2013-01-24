@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<module name="@PACKAGE@" disabled="no" version="@VERSION@"
+    release="@RELEASE@">
+
+    <description>Unified interface exposing all admin applications.
+    </description>
+
+    <requires>
+        <module comp='ge' version='3.2.5' name='dynacase-core'/>
+    </requires>
+
+    <post-install>
+        <process command="programs/record_application CORE_ADMIN" />
+        <process
+        command="./wsh.php --api=importDocuments --file=./@APPNAME@/Data/Init.csv">
+          <label lang="en">Initializing CORE_ADMIN roles and ACLs</label>
+        </process>
+        <process command="programs/update_catalog" />
+    </post-install>
+
+    <post-upgrade>
+        <process command="programs/pre_migration CORE_ADMIN" />
+        <process command="programs/record_application CORE_ADMIN" />
+        <process command="programs/post_migration CORE_ADMIN" />
+        <process command="programs/update_catalog" />
+    </post-upgrade>
+
+    <changelog>
+        <version number="1.0.0" date="2012-01-20">
+            <change title="First release" />
+        </version>
+    </changelog>
+
+</module>
