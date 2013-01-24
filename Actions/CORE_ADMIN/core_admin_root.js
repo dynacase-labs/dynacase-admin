@@ -81,6 +81,10 @@
 
     $(document).ready(function () {
         window.setTimeout(onResize, 1);
+        /* Password */
+        window.setTimeout(function () {
+            $("#userButton").changePassword();
+        }, 0);
         $("#sidebar").on(
             'click',
             '.app',
@@ -102,5 +106,13 @@
             'resize',
             onResize
         );
+        $("#disconnect").button({
+            icons: {
+                primary: "ui-icon-power"
+            },
+            text: false
+        }).on("click", function () {
+            $("#authent").trigger("submit");
+        });
     });
 }($, window, document));

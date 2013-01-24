@@ -1,5 +1,8 @@
 <?php
 
+
+require_once "FDL/freedom_util.php";
+
 function core_admin_root(Action &$action){
     $adminApps = array();
     $query = <<< 'SQL'
@@ -50,6 +53,11 @@ SQL;
     }
 
     $action->lay->setBlockData('ADMIN_APPS', $admin_apps);
+
+    $user = new_Doc('', $action->user->fid);
+    $action->lay->set("USERNAME", $user->getTitle());
+
+    $action->lay->set("WIDGET_PASSWORD", $action->parent->getJsLink("FDL:dcpui.changepassword.js.xml", true));
 }
 
 ?>
