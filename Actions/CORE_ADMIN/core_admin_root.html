@@ -4,19 +4,20 @@
     <title>[TEXT:core_admin:Dynacase administration center]</title>
     <link rel="icon" type="image/x-icon" href="CORE/Images/dynacase.ico" />
 
-    <script type="text/javascript" src="lib/jquery/jquery.js"></script>
-    <script type="text/javascript" src="lib/jquery-ui/js/jquery-ui.js"></script>
-    <link href="lib/jquery-ui/css/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
-
-    <script src="CORE_ADMIN/Layout/core_admin_root.js" type="text/javascript"></script>
+    <link href="lib/jquery-ui/css/smoothness/jquery-ui.css?version=[WVERSION]" rel="stylesheet" type="text/css"/>
     <link href="CORE_ADMIN/Layout/core_admin_root.css?version=[VERSION]" media="screen" rel="stylesheet" type="text/css"/>
 
-    <script src="[WIDGET_PASSWORD]"></script>
+
 </head>
 <body>
     <div id="header">
         <div class="user">
-            <button id="userButton">[USERNAME]</button>
+            [IF DISPLAY_CHANGE_BUTTON]
+            <button id="userButton">[USER_NAME]</button>
+            [ENDIF DISPLAY_CHANGE_BUTTON]
+            [IFNOT DISPLAY_CHANGE_BUTTON]
+            [USERNAME]
+            [ENDIF DISPLAY_CHANGE_BUTTON]
             <button id="disconnect"></button>
         </div>
         <div class="title">
