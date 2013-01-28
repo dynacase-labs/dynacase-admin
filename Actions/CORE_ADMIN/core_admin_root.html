@@ -4,7 +4,7 @@
     <title>[TEXT:core_admin:Dynacase administration center]</title>
     <link rel="icon" type="image/x-icon" href="CORE/Images/dynacase.ico" />
 
-    <link href="lib/jquery-ui/css/smoothness/jquery-ui.css?version=[WVERSION]" rel="stylesheet" type="text/css"/>
+    <link href="lib/jquery-ui/css/smoothness/jquery-ui.css?wv=[WVERSION]" rel="stylesheet" type="text/css"/>
     <link href="CORE_ADMIN/Layout/core_admin_root.css?version=[VERSION]" media="screen" rel="stylesheet" type="text/css"/>
 
 
@@ -13,14 +13,19 @@
     <div id="header">
         <div class="user">
             [IF DISPLAY_CHANGE_BUTTON]
-            <button id="userButton">[USER_NAME]</button>
+            <button id="userButton" class="ui-button ui-state-default ui-corner-all css-user-button">
+                <div class="css-user-icon">
+                    <img src="[IMG:core_admin_user.png]" alt="user"/>
+                </div>
+                [USER_NAME]
+            </button>
             [ENDIF DISPLAY_CHANGE_BUTTON]
             [IFNOT DISPLAY_CHANGE_BUTTON]
-            [USERNAME]
+            [USER_NAME]
             [ENDIF DISPLAY_CHANGE_BUTTON]
-            <button id="disconnect"></button>
+            <button id="disconnect" class="css-disconnect-button"></button>
         </div>
-        <div class="title">
+        <div class="header-title">
             <img src="[IMG:core_admin.png]" alt="[TEXT:core_admin:Dynacase administration center]" />
             [TEXT:core_admin:Dynacase administration center]
         </div>
@@ -48,8 +53,8 @@
         <input type="hidden" name="SeenBefore" value="1">
         <input type="hidden" name="logout" value="Y">
     </form>
-    <script type="text/javascript" src="lib/jquery/jquery.js?version=[WVERSION]"></script>
-    <script type="text/javascript" src="lib/jquery-ui/js/jquery-ui.js?version=[WVERSION]"></script>
+    <script type="text/javascript" src="lib/jquery/jquery.js?wv=[WVERSION]"></script>
+    <script type="text/javascript" src="lib/jquery-ui/js/jquery-ui.js?wv=[WVERSION]"></script>
     <script type="text/javascript" src="[WIDGET_PASSWORD]"></script>
     <script type="text/javascript" src="CORE_ADMIN/Layout/core_admin_root.js?version=[WVERSION]"></script>
 </body>
