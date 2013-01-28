@@ -1,23 +1,18 @@
 (function ($, window, document) {
     "use strict";
     var emptyIframeUrl = 'about:blank',
-        unselectApplication,
-        unloadApplication,
         onResize,
-        getApplicationIFrame,
-        selectApplication,
-        loadApplication;
+        reportError,
+        loadApplication,
+        loadAction,
+        getIframe,
+        unload,
+        injectActionsList,
+        generateUUID;
 
-    unselectApplication = function unselectApplication($app) {
-        $app.removeClass("selected");
-    };
-
-    unloadApplication = function unloadApplication($app) {
-        var appName, applicationIframe, appurl;
-        appName = $app.data('appname');
-        appurl = $app.data('appurl');
-        applicationIframe = getApplicationIFrame(appName, appurl);
-        applicationIframe.attr('src', emptyIframeUrl);
+    reportError = function reportError(err) {
+        //TODO
+        console.log(err);
     };
 
     onResize = function onResize() {
@@ -31,88 +26,213 @@
         $sidebar.outerHeight(windowHeight - $sidebar.offset().top);
     };
 
-    getApplicationIFrame = function getApplicationIFrame(appName, appUrl) {
-        var iframeId, applicationIframe;
-        iframeId = 'app-iframe-' + appName;
-        applicationIframe = $('#' + iframeId);
-        if (!applicationIframe.length) {
-            applicationIframe = $('<iframe id="' + iframeId + '" src="' + appUrl + '"></iframe>')
-                .on(
-                    "load",
-                    (function (appName) {
-                        return function unloadIframe() {
-                            var $this = $(this), doc, $app;
+    getIframe = function getIframe(iframeId, url) {
+        var $iframe;
+        $iframe = $('#' + iframeId);
+        if (!$iframe.length) {
+            if (url) {
+                $iframe = $('<iframe id="' + iframeId + '" src="' + url + '"></iframe>')
+                    .on(
+                        "load",
+                        function unloadIframe() {
+                            var $this = $(this), doc, $loadedElement;
                             doc = this.contentDocument || this.contentWindow.document;
                             if (doc
                                     && doc.location
                                     && doc.location.href
                                     && doc.location.href === emptyIframeUrl) {
                                 $this.empty().remove();
-                                $app = $('.app[data-appname=' + appName + ']', $('#sidebar'))
-                                    .removeClass('loaded');
-                                unselectApplication($app);
+                                $loadedElement = $('li[data-iframeid="' + this.id + '"]');
+                                $loadedElement.removeClass("loaded ui-state-highlight");
                             }
-                        };
-                    }(appName))
-                )
-                .hide()
-                .appendTo('#content');
+                        }
+                    )
+                    .hide()
+                    .appendTo('#content');
+            } else {
+                reportError("no url");
+            }
         }
-        return applicationIframe;
-    };
-
-    selectApplication = function selectApplication($app) {
-        $app.addClass("selected")
-            .siblings()
-            .removeClass("selected");
+        return $iframe;
     };
 
     loadApplication = function loadApplication($app) {
-        var appName, applicationIframe, appurl;
-        appName = $app.data('appname');
-        appurl = $app.data('appurl');
-        applicationIframe = getApplicationIFrame(appName, appurl);
-        applicationIframe.siblings()
+        var $adminActionsList, appName, appUrl, iframeId, rootActionName, url, $iframe;
+        $adminActionsList = $('.admin-actions', $app);
+        if ($adminActionsList.length) {
+            injectActionsList($app);
+        } else {
+            appName = $app.data("appname");
+            appUrl = $app.data("appurl");
+            iframeId = $app.data("iframeid");
+            if (!iframeId) {
+                iframeId = 'app-' + appName;
+                $app.attr('data-iframeid', iframeId);
+            }
+            rootActionName = $app.data("rootaction");
+            url = appUrl + '&action=' + rootActionName;
+            $iframe = getIframe(iframeId, url);
+            $iframe.siblings()
+                .hide();
+            $iframe.show();
+            $('.ui-state-highlight', $("#sidebar")).removeClass("ui-state-highlight");
+            $app.addClass("loaded ui-state-highlight");
+        }
+    };
+
+    loadAction = function loadAction($action) {
+        var iframeId, actionUrl, $iframe;
+        iframeId = $action.data("iframeid");
+        if (!iframeId) {
+            iframeId = 'action-' + generateUUID();
+            $action.attr('data-iframeid', iframeId);
+        }
+        actionUrl = $action.data("url");
+
+        $iframe = getIframe(iframeId, actionUrl);
+        $iframe.siblings()
             .hide();
-        applicationIframe.show();
-        $app.addClass("loaded");
-        return true;
+        $iframe.show();
+        $('.ui-state-highlight', $("#sidebar")).removeClass("ui-state-highlight");
+        $action.addClass("loaded ui-state-highlight");
+    };
+
+    unload = function unload($iframe) {
+        var iframeId, $loadedElement;
+        $iframe.attr('src', emptyIframeUrl);
+        iframeId = $iframe[0].id;
+        $loadedElement = $('li[data-iframeid="' + iframeId + '"]');
+        $loadedElement.removeClass("loaded ui-state-highlight");
+    };
+
+    injectActionsList = function injectActionsList($app) {
+        var appName, actionsList, i, length, title, action, actionsListBody = "";
+        appName = $app.data('appname');
+        $('.admin-actions', $app).show();
+        $.getJSON(
+            window.location.protocol + '//' + window.location.host + window.location.pathname,
+            {
+                app: appName,
+                action: 'ADMIN_ACTIONS_LIST'
+            }
+        ).pipe(
+            function onSuccess(response) {
+                if (response.success) {
+                    return (response);
+                }
+                return ($.Deferred().reject(response));
+            },
+            function onError(response) {
+                return ({
+                    success: false,
+                    body: null,
+                    error: "Unexpected error: " + response.status + " " + response.statusText
+                });
+            }
+        ).done(function (response) {
+            actionsList = response.body;
+            for (i = 0, length = actionsList.length; i < length; i += 1) {
+                if (!actionsList[i].url || !actionsList[i].label) {
+                    reportError("actions list contains an item with no label or no url");
+                }
+                title = actionsList[i].title || '';
+                action = '<li class="admin-action selectable" title="' + title + '" data-url="' + actionsList[i].url + '">' + actionsList[i].label + '<span class="btn-close">×</span></li>';
+                actionsListBody += action;
+            }
+            $('.admin-actions', $app)
+                .empty()
+                .append($(actionsListBody));
+            $app.removeClass("selectable ui-state-hover");
+        }).fail(function (response) {
+            reportError(response.error);
+        });
+    };
+
+    generateUUID = function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
     };
 
     $(document).ready(function () {
-        window.setTimeout(onResize, 1);
-        /* Password */
-        window.setTimeout(function () {
-            $("#userButton").changePassword();
-        }, 0);
+
         $("#sidebar").on(
             'click',
             '.app',
             function appSelected() {
-                var $this = $(this);
-                if (loadApplication($this)) {
-                    selectApplication($this);
-                }
+                loadApplication($(this));
+            }
+        ).on(
+            'click',
+            '.admin-action',
+            function actionSelected() {
+                loadAction($(this));
+                return false;
             }
         ).on(
             'click',
             '.btn-close',
-            function appClosed() {
-                var $app = $(this).closest('.app');
-                unloadApplication($app);
+            function itemClosed() {
+                var $item, $iframe;
+                $item = $(this).closest("[data-iframeid]");
+                $iframe = $("#" + $item.data("iframeid"));
+                $iframe.attr('src', emptyIframeUrl);
+                return false;
+            }
+        ).on(
+            "mouseenter",
+            ".selectable",
+            function () {
+                $(this).addClass("ui-state-hover");
+            }
+        ).on(
+            "mouseleave",
+            ".selectable",
+            function () {
+                $(this).removeClass("ui-state-hover");
             }
         );
+
+        /**
+         * resize items on window resize
+         */
         $(window).on(
             'resize',
             onResize
         );
+        window.setTimeout(onResize, 1);
+
+        /**
+         * Disconnect button
+         */
         $("#disconnect").button({
             icons: {
                 primary: "ui-icon-power"
             },
             text: false
         }).on("click", function () {
-            $("#authent").trigger("submit");
+            $("#disconnect-form").trigger("submit");
         });
+
+        /**
+         * Change password button
+         */
+        window.setTimeout(function () {
+            $("#userButton")
+                .passwordModifier()
+                .on(
+                    "mouseenter",
+                    function () {
+                        $(this).addClass("ui-state-hover");
+                    }
+                ).on(
+                    "mouseleave",
+                    function () {
+                        $(this).removeClass("ui-state-hover");
+                    }
+                );
+        }, 0);
     });
+
 }($, window, document));

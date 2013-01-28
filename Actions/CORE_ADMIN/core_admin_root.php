@@ -14,16 +14,19 @@ SELECT
     application.description,
     application.access_free,
     application.with_frame,
-    action.acl
+    root_action.acl,
+    root_action.name as root_action,
+    list_action.name as admin_actions_list
 FROM application
-LEFT JOIN action
-ON application.id = action.id_application
+LEFT JOIN action as root_action
+ON application.id = root_action.id_application AND root_action.root = 'Y'
+LEFT JOIN action as list_action
+ON application.id = list_action.id_application AND list_action.name = 'ADMIN_ACTIONS_LIST'
 WHERE
     application.tag ~* E'\\yadmin\\y'
     AND application.available = 'Y'
     AND application.name != 'CORE_ADMIN'
-    AND action.root = 'Y'
-ORDER BY short_name;
+;
 SQL;
 
     simpleQuery('', $query, $adminApps, false, false, true);
@@ -43,12 +46,14 @@ SQL;
             $appUrl .= "&sole=A";
         }
         $admin_apps[] = array(
-            "NAME"          => $adminApp["name"],
-            "URL"           => $appUrl,
-            "ICON_SRC"      => $action->parent->getImageLink($adminApp["icon"], false, 30),
-            "ICON_ALT"      => $adminApp["name"],
-            "TITLE"         => _($adminApp["short_name"]),
-            "DESCRIPTION"   => _($adminApp["description"])
+            "APPLICATION_NAME"      => $adminApp["name"],
+            "APPLICATION_URL"       => $appUrl,
+            "APPLICATION_ICON_SRC"  => $action->parent->getImageLink($adminApp["icon"], false, 30),
+            "APPLICATION_ICON_ALT"  => $adminApp["name"],
+            "APPLICATION_TITLE"     => _($adminApp["short_name"]),
+            "APPLICATION_DESC"      => _($adminApp["description"]),
+            "ROOT_ACTION"           => $adminApp["root_action"],
+            "HAS_ADMIN_ACTIONS"     => !empty($adminApp["admin_actions_list"])
         );
     }
 
@@ -60,7 +65,7 @@ SQL;
     /**
      * Add widget code
      */
-    $action->lay->set("WIDGET_PASSWORD", $action->parent->getJsLink("CORE:dcpui.changepassword.js.xml", true));
+    $action->lay->set("WIDGET_PASSWORD", $action->parent->getJsLink("CORE:dcpui.passwordmodifier.js.xml", true));
 
     /**
      * Test if can change password

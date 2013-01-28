@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TEMPLATE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-21 14:06+0100\n"
+"POT-Creation-Date: 2013-01-28 17:43+0100\n"
 "PO-Revision-Date: 2010-01-12 15:35+0100\n"
 "Last-Translator: Jean Martin <jean.martin@somewhere.org>\n"
 "Language-Team: French <distrib@somewhere.org>\n"
@@ -25,20 +25,17 @@ msgstr "Accès à l'application d'administration"
 msgid "core_admin:Dynacase administration center"
 msgstr "Centre d'administration Dynacase"
 
+msgid "core_admin:Loading"
+msgstr "Chargement…"
+
 msgid "core_admin:Main ihm"
 msgstr "Interface principale"
 
 msgid "core_admin:Unified interface exposing all admin applications"
 msgstr "Interface unifiée exposant toutes les applications d'administration"
 
-msgid "core_admin:User must be authenticated"
-msgstr "L'utilisateur doit être authentifié"
-
 msgid "core_admin:only administrators can access this area."
-msgstr "Seuls les administrateurs ont accès"
-
-msgid "core_admin:unload this module"
-msgstr "Fermer ce module"
+msgstr "Seuls les administrateurs ont accès à cet endroit."
 
 #, php-format
 msgid "csv file <%s> wroted"
