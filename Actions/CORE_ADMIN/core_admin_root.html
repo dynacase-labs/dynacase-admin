@@ -14,9 +14,9 @@
         <div class="user">
             [IF DISPLAY_CHANGE_BUTTON]
             <button id="userButton" class="ui-button ui-state-default ui-corner-all css-user-button">
-                <div class="css-user-icon">
+                <span class="css-user-icon">
                     <img src="[IMG:core_admin_user.png]" alt="user"/>
-                </div>
+                </span>
                 [USER_NAME]
             </button>
             [ENDIF DISPLAY_CHANGE_BUTTON]
@@ -30,26 +30,36 @@
             [TEXT:core_admin:Dynacase administration center]
         </div>
     </div>
-    <div id="sidebar">
-        [BLOCK ADMIN_APPS]
-        <div data-appname="[NAME]" data-appurl="[URL]" class="app">
-            <span class="btn-close" title="[TEXT:core_admin:unload this module]">×</span>
-            <div class="app-button">
-                <img src="[ICON_SRC]" alt="[ICON_ALT]"/>
-                <div class="content">
-                    <span class="title">[TITLE]</span>
-                    <div class="description">
-                        [DESCRIPTION]
-                    </div>
+    <ul id="sidebar">[BLOCK ADMIN_APPS]
+        <li class="app selectable"
+            data-appurl="[APPLICATION_URL]"
+            data-appname="[APPLICATION_NAME]"
+            data-rootaction="[ROOT_ACTION]">[IFNOT HAS_ADMIN_ACTIONS]
+            <span class="btn-close">×</span>[ENDIF HAS_ADMIN_ACTIONS]
+            <img class="app-icon" src="[APPLICATION_ICON_SRC]" alt="[APPLICATION_ICON_ALT]"/>
+            <div class="app-header">
+                <span class="app-title">[APPLICATION_TITLE]</span>
+                <div class="app-description">
+                    [APPLICATION_DESC]
                 </div>
             </div>
-            <div class="clear"></div>
-        </div>
+
+            [IF HAS_ADMIN_ACTIONS]<ul style="display:none;" class="admin-actions">
+                <li class="admin-actions-loading">[TEXT:core_admin:Loading]</li>[BLOCK ADMIN_ACTIONS]
+                <li class="admin-action selectable"
+                    title="[TITLE]"
+                    data-url="[URL]">
+                    <span class="action-title">[LABEL]</span>
+                </li>
+                [ENDBLOCK ADMIN_ACTIONS]
+            </ul>
+            [ENDIF HAS_ADMIN_ACTIONS]
+        </li>
         [ENDBLOCK ADMIN_APPS]
-    </div>
+    </ul>
     <div id="content"></div>
     <form style="display:none;" action="[CORE_STANDURL]&amp;app=AUTHENT&amp;action=LOGOUT" method="POST" name="authent"
-          id="authent">
+          id="disconnect-form">
         <input type="hidden" name="SeenBefore" value="1">
         <input type="hidden" name="logout" value="Y">
     </form>
