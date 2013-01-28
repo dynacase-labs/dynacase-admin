@@ -136,7 +136,7 @@
                     reportError("actions list contains an item with no label or no url");
                 }
                 title = actionsList[i].title || '';
-                action = '<li class="admin-action selectable" title="' + title + '" data-url="' + actionsList[i].url + '">' + actionsList[i].label + '<span class="btn-close">×</span></li>';
+                action = '<li class="admin-action selectable" title="' + title + '" data-url="' + actionsList[i].url + '"><span class="admin-action-label">' + actionsList[i].label + '</span><span class="btn-close">×</span></li>';
                 actionsListBody += action;
             }
             $('.admin-actions', $app)
