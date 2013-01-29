@@ -140,6 +140,10 @@ body {
     height: 2em;
 }
 
+.user button {
+    margin-right: 0.5em;
+}
+
 .css-user-button {
     height: 100%;
     padding: 0 10px;
