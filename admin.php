@@ -77,20 +77,10 @@ if (!getHttpVars("app")) {
 }
 $actionRouter = new ActionRouter($account, AuthenticatorManager::$auth);
 $action =$actionRouter->getAction();
-if ($action->user->id == 1) {
-    $userHasAdminPrivileges = true;
-} else {
-    $roles = $action->user->getAllRoles();
-    $userHasAdminPrivileges = false;
-    foreach ($roles as $role) {
-        if ($role['login'] === 'core_administrator') {
-            $userHasAdminPrivileges = true;
-            break;
-        }
+if ($action->user->id != 1) {
+    if(! $action->canExecute("CORE_ADMIN", "CORE_ADMIN")){
+        throw new \Dcp\Core\Exception(_("core_admin:only administrators can access this area."));
     }
-}
-if (!$userHasAdminPrivileges) {
-    throw new \Dcp\Core\Exception(_("core_admin:only administrators can access this area."));
 }
 $action->parent->setAdminMode();
 $actionRouter->executeAction();
