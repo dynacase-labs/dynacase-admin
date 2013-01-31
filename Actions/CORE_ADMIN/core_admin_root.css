@@ -113,9 +113,9 @@ a {
 }
 
 .app-header {
-    display: table-cell;
     border-left: 1px solid #DEDEDE;
     padding-left: 3px;
+    margin-left: 33px;
 }
 .app:hover img, .app.loaded img, .app.admin-actions-loaded img {
     opacity: 1;
