@@ -4,7 +4,6 @@ $app_desc = array(
     "name"        => "CORE_ADMIN",
     "short_name"  => N_("core_admin:Access to administration application"),
     "description" => N_("core_admin:Unified interface exposing all admin applications"),
-    "access_free" => "N",
     "icon"        => "core_admin.png",
     "displayable" => "N",
     "with_frame"  => "Y",
