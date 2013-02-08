@@ -12,7 +12,6 @@ SELECT
     application.icon,
     application.short_name,
     application.description,
-    application.access_free,
     application.with_frame,
     root_action.acl,
     root_action.name as root_action,
@@ -26,7 +25,7 @@ WHERE
     application.tag ~* E'\\yadmin\\y'
     AND application.available = 'Y'
     AND application.name != 'CORE_ADMIN'
-ORDER BY application.id;
+;
 SQL;
 
     simpleQuery('', $query, $adminApps, false, false, true);
@@ -34,11 +33,9 @@ SQL;
     $admin_apps = array();
 
     foreach ($adminApps as $adminApp) {
-        if ($adminApp["access_free"] !== "Y") {
-            if ($action->user->id != 1){ // no control for user Admin
-                if (!$action->HasPermission($adminApp["acl"], $adminApp["id"])){
-                    continue;
-                }
+        if ($action->user->id != 1){ // no control for user Admin
+            if (!$action->HasPermission($adminApp["acl"], $adminApp["id"])){
+                continue;
             }
         }
         $appUrl = "?app=" . $adminApp["name"];
