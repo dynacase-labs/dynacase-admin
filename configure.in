@@ -26,7 +26,7 @@ LICENSE="http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General 
 AC_SUBST(LICENSE)
 
 AC_SUBST(PUBRULE)
-PUBRULE=
+PUBRULE="$(pwd)/buildTools"
 AC_ARG_WITH(pubrule, [  --with-pubrule=dir	Path to PubRule], PUBRULE=$withval)
 if test -z ${PUBRULE}; then
     PUBRULE=`pwd`
