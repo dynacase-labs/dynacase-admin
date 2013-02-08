@@ -57,6 +57,12 @@ SQL;
         );
     }
 
+    $sortFunction = function ($value1, $value2) {
+        return strnatcasecmp($value1["APPLICATION_TITLE"], $value2["APPLICATION_TITLE"]);
+    };
+
+    usort($admin_apps, $sortFunction);
+
     $action->lay->setBlockData('ADMIN_APPS', $admin_apps);
 
     $user = new_Doc('', $action->user->fid);
