@@ -1,6 +1,7 @@
 PACKAGE = @PACKAGE@
 VERSION = @VERSION@
 utildir = @PUBRULE@
+rootdir = @ROOTDIR@
 pubdir = @prefix@
 srcdir = @srcdir@
 applib = FDL
@@ -8,7 +9,7 @@ appname = @APPNAME@
 TAR = tar
 GZIP_ENV = --best
 
-export PACKAGE utildir pubdir applib appname
+export PACKAGE utildir pubdir applib appname rootdir
 
 SUBDIR= Apps Actions Data Scripts Images
 
