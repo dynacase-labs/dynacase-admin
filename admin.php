@@ -76,13 +76,11 @@ if (!getHttpVars("app")) {
     SetHttpVar("app", "CORE_ADMIN");
 }
 $actionRouter = new ActionRouter($account, AuthenticatorManager::$auth);
-$action =$actionRouter->getAction();
-if ($action->user->id != 1) {
-    if(! $action->canExecute("CORE_ADMIN", "CORE_ADMIN")){
-        throw new \Dcp\Core\Exception(_("core_admin:only administrators can access this area."));
-    }
+$action = $actionRouter->getAction();
+if ($action->canExecute("CORE_ADMIN_ROOT", "CORE_ADMIN") != '') {
+    throw new \Dcp\Core\Exception(_("core_admin:only administrators can access this area."));
 }
+
 $action->parent->setAdminMode();
 $actionRouter->executeAction();
-
 ?>
