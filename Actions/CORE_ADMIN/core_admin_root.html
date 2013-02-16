@@ -20,7 +20,7 @@
     <div id="header">
         <div class="user">
             [IF DISPLAY_CHANGE_BUTTON]
-            <button id="userButton" class="ui-button ui-state-default ui-corner-all css-user-button">
+            <button id="userButton" title="[TEXT:core_admin:set password]" class="ui-button ui-state-default ui-corner-all css-user-button">
                 <span class="css-user-icon">
                     <img src="[IMG:core_admin_user.png]" alt="user"/>
                 </span>
@@ -30,7 +30,8 @@
             [IFNOT DISPLAY_CHANGE_BUTTON]
             [USER_NAME]
             [ENDIF DISPLAY_CHANGE_BUTTON]
-            <button id="disconnect" class="css-disconnect-button"></button>
+            <button id="gotoapps" title="[TEXT:core_admin:goto apps]" class="css-disconnect-button"></button>
+            <button id="disconnect" title="[TEXT:core_admin:disconnect]" class="css-disconnect-button"></button>
         </div>
         <div class="header-title">
             <img src="[IMG:logo-dynacase-h36.png]" alt="[TEXT:core_admin:Dynacase administration center]" />
@@ -78,6 +79,9 @@
           id="disconnect-form">
         <input type="hidden" name="SeenBefore" value="1">
         <input type="hidden" name="logout" value="Y">
+    </form>
+    <form style="display:none;" action="index.php" method="POST" name="apps"
+          id="gotoapps-form">
     </form>
     <script type="text/javascript" src="lib/jquery/jquery.js?wv=[WVERSION]"></script>
     <script type="text/javascript" src="lib/jquery-ui/js/jquery-ui.js?wv=[WVERSION]"></script>

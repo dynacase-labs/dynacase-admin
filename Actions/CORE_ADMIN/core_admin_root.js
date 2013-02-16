@@ -220,6 +220,18 @@
         });
 
         /**
+         * Disconnect button
+         */
+        $("#gotoapps").button({
+            icons: {
+                primary: "ui-icon-home"
+            },
+            text: false
+        }).on("click", function () {
+            $("#gotoapps-form").trigger("submit");
+        });
+
+        /**
          * Change password button
          */
         window.setTimeout(function () {

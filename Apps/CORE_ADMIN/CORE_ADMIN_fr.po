@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: TEMPLATE\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-31 05:48+0100\n"
-"PO-Revision-Date: 2013-01-31 05:51+0100\n"
+"PO-Revision-Date: 2013-02-16 07:57+0100\n"
 "Last-Translator: Jean Martin <jean.martin@somewhere.org>\n"
 "Language-Team: French <distrib@somewhere.org>\n"
 "Language: fr\n"
@@ -38,7 +38,7 @@ msgid "core_admin:documentation link"
 msgstr "Accès à la documentation Dynacase"
 
 msgid "core_admin:only administrators can access this area."
-msgstr "Seuls les administrateurs ont accès à cet endroit."
+msgstr "L'accès est réservé aux administrateurs."
 
 msgid "core_admin:presentation text"
 msgstr "Le centre d'administration propose les applications de gestion de Dynacase et de ses applications."
@@ -46,3 +46,12 @@ msgstr "Le centre d'administration propose les applications de gestion de Dynaca
 #, php-format
 msgid "csv file <%s> wroted"
 msgstr ""
+
+msgid "core_admin:disconnect"
+msgstr "Déconnexion"
+
+msgid "core_admin:goto apps"
+msgstr "Accéder aux applications"
+
+msgid "core_admin:set password"
+msgstr "Changer de mot de passe"
