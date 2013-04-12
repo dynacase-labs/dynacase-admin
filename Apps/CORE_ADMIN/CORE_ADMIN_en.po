@@ -2,46 +2,68 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 05:48+0100\n"
-"PO-Revision-Date: 2010-01-12 15:35+0100\n"
-"Last-Translator: John Doe <john.doe@somewhere.org>\n"
+"POT-Creation-Date: 2013-04-12 08:49+0200\n"
+"PO-Revision-Date: 2013-04-12 08:59+0100\n"
+"Last-Translator: Automatically generated\n"
 "Language-Team: English <distrib@somewhere.org>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#, php-format
-msgid "cannot write  %s"
-msgstr ""
-
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:18
 msgid "core_admin:Access to CORE_ADMIN"
 msgstr "Access to CORE_ADMIN application"
 
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:5
 msgid "core_admin:Access to administration application"
 msgstr "Access to administration application"
 
+#: tempCatalog.php:1 tempCatalog.php:5 tempCatalog.php:6 tempCatalog.php:9
 msgid "core_admin:Dynacase administration center"
 msgstr "Dynacase administration center"
 
+#: tempCatalog.php:8
 msgid "core_admin:Loading"
 msgstr "Loading…"
 
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:26
 msgid "core_admin:Main ihm"
 msgstr "Main IHM"
 
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:6
 msgid "core_admin:Unified interface exposing all admin applications"
 msgstr "Unified interface exposing all admin applications"
 
-msgid "core_admin:documentation link"
-msgstr ""
+#: tempCatalog.php:4
+msgid "core_admin:disconnect"
+msgstr "Logout"
 
+#: tempCatalog.php:7 tempCatalog.php:11
+msgid "core_admin:documentation link"
+msgstr "Documentation"
+
+#: tempCatalog.php:3
+msgid "core_admin:goto apps"
+msgstr "Applications"
+
+#: admin.php:81
 msgid "core_admin:only administrators can access this area."
 msgstr "Only administrators can access this area"
 
+#: tempCatalog.php:10
 msgid "core_admin:presentation text"
 msgstr ""
+"The administration center allows you to manage Dynacase and its applications."
 
-#, php-format
-msgid "csv file <%s> wroted"
-msgstr ""
+#: tempCatalog.php:2
+msgid "core_admin:set password"
+msgstr "Change password"
+
+#: Actions/CORE_ADMIN/core_admin_root.php:51
+msgid "description"
+msgstr "description"
+
+#: Actions/CORE_ADMIN/core_admin_root.php:50
+msgid "short_name"
+msgstr "short name"

@@ -3,55 +3,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TEMPLATE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 05:48+0100\n"
-"PO-Revision-Date: 2013-02-16 07:57+0100\n"
-"Last-Translator: Jean Martin <jean.martin@somewhere.org>\n"
+"POT-Creation-Date: 2013-04-12 08:49+0200\n"
+"PO-Revision-Date: 2013-04-12 08:59+0100\n"
+"Last-Translator: Automatically generated\n"
 "Language-Team: French <distrib@somewhere.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#, php-format
-msgid "cannot write  %s"
-msgstr ""
-
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:18
 msgid "core_admin:Access to CORE_ADMIN"
 msgstr "Acces à l'application CORE_ADMIN"
 
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:5
 msgid "core_admin:Access to administration application"
 msgstr "Accès à l'application d'administration"
 
+#: tempCatalog.php:1 tempCatalog.php:5 tempCatalog.php:6 tempCatalog.php:9
 msgid "core_admin:Dynacase administration center"
 msgstr "Centre d'administration Dynacase"
 
+#: tempCatalog.php:8
 msgid "core_admin:Loading"
 msgstr "Chargement…"
 
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:26
 msgid "core_admin:Main ihm"
 msgstr "Interface principale"
 
+#: Apps/CORE_ADMIN/CORE_ADMIN.app:6
 msgid "core_admin:Unified interface exposing all admin applications"
 msgstr "Interface unifiée exposant toutes les applications d'administration"
 
-msgid "core_admin:documentation link"
-msgstr "Accès à la documentation Dynacase"
-
-msgid "core_admin:only administrators can access this area."
-msgstr "L'accès est réservé aux administrateurs."
-
-msgid "core_admin:presentation text"
-msgstr "Le centre d'administration propose les applications de gestion de Dynacase et de ses applications."
-
-#, php-format
-msgid "csv file <%s> wroted"
-msgstr ""
-
+#: tempCatalog.php:4
 msgid "core_admin:disconnect"
 msgstr "Déconnexion"
 
+#: tempCatalog.php:7 tempCatalog.php:11
+msgid "core_admin:documentation link"
+msgstr "Accès à la documentation Dynacase"
+
+#: tempCatalog.php:3
 msgid "core_admin:goto apps"
 msgstr "Accéder aux applications"
 
+#: admin.php:81
+msgid "core_admin:only administrators can access this area."
+msgstr "L'accès est réservé aux administrateurs."
+
+#: tempCatalog.php:10
+msgid "core_admin:presentation text"
+msgstr ""
+"Le centre d'administration propose les applications de gestion de Dynacase "
+"et de ses applications."
+
+#: tempCatalog.php:2
 msgid "core_admin:set password"
 msgstr "Changer de mot de passe"
+
+#: Actions/CORE_ADMIN/core_admin_root.php:51
+msgid "description"
+msgstr "description"
+
+#: Actions/CORE_ADMIN/core_admin_root.php:50
+msgid "short_name"
+msgstr "nom abrégé"
