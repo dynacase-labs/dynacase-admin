@@ -1,9 +1,18 @@
 <?php
+/*
+ * @author Anakeen
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ * @package FDL
+ */
 
 
 require_once "FDL/freedom_util.php";
 
-function core_admin_root(Action &$action){
+function core_admin_root(Action & $action)
+{
+    $action->parent->addCssRef("css/dcp/jquery-ui.css");
+    $action->parent->addCssRef("CORE_ADMIN:core_admin_root.css");
+    
     $adminApps = array();
     $query = <<< 'SQL'
 SELECT
@@ -27,53 +36,51 @@ WHERE
     AND application.name != 'CORE_ADMIN'
 ;
 SQL;
-
+    
     simpleQuery('', $query, $adminApps, false, false, true);
-
+    
     $admin_apps = array();
-
+    
     foreach ($adminApps as $adminApp) {
-        if ($action->user->id != 1){ // no control for user Admin
-            if (!$action->HasPermission($adminApp["acl"], $adminApp["id"])){
+        if ($action->user->id != 1) { // no control for user Admin
+            if (!$action->HasPermission($adminApp["acl"], $adminApp["id"])) {
                 continue;
             }
         }
         $appUrl = "?app=" . $adminApp["name"];
-        if($adminApp["with_frame"] !== 'Y'){
-            $appUrl .= "&sole=A";
+        if ($adminApp["with_frame"] !== 'Y') {
+            $appUrl.= "&sole=A";
         }
         $admin_apps[] = array(
-            "APPLICATION_NAME"      => $adminApp["name"],
-            "APPLICATION_URL"       => $appUrl,
-            "APPLICATION_ICON_SRC"  => $action->parent->getImageLink($adminApp["icon"], false, 30),
-            "APPLICATION_ICON_ALT"  => $adminApp["name"],
-            "APPLICATION_TITLE"     => _($adminApp["short_name"]),
-            "APPLICATION_DESC"      => _($adminApp["description"]),
-            "ROOT_ACTION"           => $adminApp["root_action"],
-            "HAS_ADMIN_ACTIONS"     => !empty($adminApp["admin_actions_list"])
+            "APPLICATION_NAME" => $adminApp["name"],
+            "APPLICATION_URL" => $appUrl,
+            "APPLICATION_ICON_SRC" => $action->parent->getImageLink($adminApp["icon"], false, 30) ,
+            "APPLICATION_ICON_ALT" => $adminApp["name"],
+            "APPLICATION_TITLE" => _($adminApp["short_name"]) ,
+            "APPLICATION_DESC" => _($adminApp["description"]) ,
+            "ROOT_ACTION" => $adminApp["root_action"],
+            "HAS_ADMIN_ACTIONS" => !empty($adminApp["admin_actions_list"])
         );
     }
-
-    $sortFunction = function ($value1, $value2) {
+    
+    $sortFunction = function ($value1, $value2)
+    {
         return strnatcasecmp($value1["APPLICATION_TITLE"], $value2["APPLICATION_TITLE"]);
     };
-
+    
     usort($admin_apps, $sortFunction);
-
+    
     $action->lay->setBlockData('ADMIN_APPS', $admin_apps);
-
+    
     $user = new_Doc('', $action->user->fid);
     $action->lay->set("USER_NAME", $user->getTitle());
-
     /**
      * Add widget code
      */
     $action->lay->set("WIDGET_PASSWORD", $action->parent->getJsLink("CORE:dcpui.passwordmodifier.js.xml", true));
-
     /**
      * Test if can change password
      */
     $action->lay->set('DISPLAY_CHANGE_BUTTON', ("" === $user->canEdit()));
 }
-
 ?>
