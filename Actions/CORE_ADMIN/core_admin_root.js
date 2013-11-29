@@ -140,7 +140,7 @@
                     reportError("actions list contains an item with no label or no url");
                 }
                 title = actionsList[i].title || '';
-                action = '<li class="admin-action selectable" title="' + title + '" data-url="' + actionsList[i].url + '"><span class="admin-action-label">' + actionsList[i].label + '</span><span class="btn-close">×</span></li>';
+                action = '<li class="admin-action selectable" title="' + title + '" data-url="' + actionsList[i].url + '"><span class="btn-close">×</span><span class="admin-action-label">' + actionsList[i].label + '</span></li>';
                 actionsListBody += action;
             }
             $('.admin-actions', $app)
@@ -230,7 +230,42 @@
         }).on("click", function () {
             $("#gotoapps-form").trigger("submit");
         });
+  /**
+                * Shiw Hide side bar button
+                */
+               $("#showhide").button({
+                   icons: {
+                       primary: "ui-icon-arrowthickstop-1-w"
+                   },
+                   text: false
+               })
+                   .on("click", function () {
+                       if ($(this).data("hide") != "1") {
+                           $('#sidebar .app').hide();
+                           $('#sidebar .doclink a').hide();
+                           $('#sidebar').css('width',"3em");
+                           $('#content').css("left","3em");
+                           $(this).data("hide", "1");
+                           $(this).button({
+                               icons: {
+                                   primary: "ui-icon-arrowthickstop-1-e"
+                               }});
+                           $(this).attr('title', $(this).data("show-title"));
+                       } else {
+                           $('#sidebar').css('width',"20em");
+                           $('#content').css("left","20em");
+                           $('#sidebar .app').show();
+                           $('#sidebar .doclink a').show();
+                           $(this).data("hide", "0");
+                           $(this).button({
+                               icons: {
+                                   primary: "ui-icon-arrowthickstop-1-w"
+                               }});
+                           $(this).attr('title', $(this).data("hide-title"));
+                       }
 
+                       $('#content iframe').trigger('resize');
+               });
         /**
          * Change password button
          */
