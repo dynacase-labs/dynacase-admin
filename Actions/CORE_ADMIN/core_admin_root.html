@@ -41,6 +41,10 @@
     <ul id="sidebar">
 	<li class="doclink">
 	  <a href="http://docs.anakeen.com" target="_blank">[TEXT:core_admin:documentation link]</a>
+        <button id="showhide" data-hide-title="[TEXT:core_admin:Hide sidebar]"
+                data-show-title="[TEXT:core_admin:Show sidebar]"
+                title="[TEXT:core_admin:Hide sidebar]"
+                class="css-showhide-button"></button>
 	</li>
         [BLOCK ADMIN_APPS]<li class="app selectable"
             data-appurl="[APPLICATION_URL]"
@@ -80,7 +84,7 @@
         <input type="hidden" name="SeenBefore" value="1">
         <input type="hidden" name="logout" value="Y">
     </form>
-    <form style="display:none;" action="." method="POST" name="apps"
+    <form style="display:none;" action="." method="POST" target="_blank" name="apps"
           id="gotoapps-form">
     </form>
     <script type="text/javascript" src="lib/jquery/jquery.js?wv=[WVERSION]"></script>

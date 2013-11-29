@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZOO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-12 08:49+0200\n"
-"PO-Revision-Date: 2013-04-12 08:59+0100\n"
+"POT-Creation-Date: 2013-11-29 11:11+0100\n"
+"PO-Revision-Date: 2013-11-29 11:12+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: English <distrib@somewhere.org>\n"
 "Language: en\n"
@@ -19,17 +19,26 @@ msgstr "Access to CORE_ADMIN application"
 msgid "core_admin:Access to administration application"
 msgstr "Access to administration application"
 
-#: tempCatalog.php:1 tempCatalog.php:5 tempCatalog.php:6 tempCatalog.php:9
+#: tempCatalog.php:1 tempCatalog.php:5 tempCatalog.php:6 tempCatalog.php:12
+#: tempCatalog.php:15 tempCatalog.php:16 tempCatalog.php:17 tempCatalog.php:23
 msgid "core_admin:Dynacase administration center"
 msgstr "Dynacase administration center"
 
-#: tempCatalog.php:8
+#: tempCatalog.php:8 tempCatalog.php:10 tempCatalog.php:19 tempCatalog.php:21
+msgid "core_admin:Hide sidebar"
+msgstr "Hide side bar"
+
+#: tempCatalog.php:11 tempCatalog.php:22
 msgid "core_admin:Loading"
 msgstr "Loading…"
 
 #: Apps/CORE_ADMIN/CORE_ADMIN.app:26
 msgid "core_admin:Main ihm"
 msgstr "Main IHM"
+
+#: tempCatalog.php:9 tempCatalog.php:20
+msgid "core_admin:Show sidebar"
+msgstr "Show side bar"
 
 #: Apps/CORE_ADMIN/CORE_ADMIN.app:6
 msgid "core_admin:Unified interface exposing all admin applications"
@@ -39,7 +48,7 @@ msgstr "Unified interface exposing all admin applications"
 msgid "core_admin:disconnect"
 msgstr "Logout"
 
-#: tempCatalog.php:7 tempCatalog.php:11
+#: tempCatalog.php:7 tempCatalog.php:14 tempCatalog.php:18 tempCatalog.php:25
 msgid "core_admin:documentation link"
 msgstr "Documentation"
 
@@ -51,7 +60,7 @@ msgstr "Applications"
 msgid "core_admin:only administrators can access this area."
 msgstr "Only administrators can access this area"
 
-#: tempCatalog.php:10
+#: tempCatalog.php:13 tempCatalog.php:24
 msgid "core_admin:presentation text"
 msgstr ""
 "The administration center allows you to manage Dynacase and its applications."
@@ -60,10 +69,10 @@ msgstr ""
 msgid "core_admin:set password"
 msgstr "Change password"
 
-#: Actions/CORE_ADMIN/core_admin_root.php:51
+#: Actions/CORE_ADMIN/core_admin_root.php:60
 msgid "description"
 msgstr "description"
 
-#: Actions/CORE_ADMIN/core_admin_root.php:50
+#: Actions/CORE_ADMIN/core_admin_root.php:59
 msgid "short_name"
 msgstr "short name"

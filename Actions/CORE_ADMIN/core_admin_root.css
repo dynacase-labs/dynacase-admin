@@ -87,9 +87,10 @@ a {
 
 .doclink {
     list-style-type: none;
-    padding: 10px;
+    padding: 10px 0 10px 5px;
     text-align: center;
     font-size: 90%;
+    vertical-align: middle;
 }
 .doclink a {
     text-decoration: none;
@@ -188,4 +189,8 @@ ul.admin-actions li {
 /* Disconnect */
 .css-disconnect-button {
     height: 100%;
+}
+button.ui-button-icon-only.css-showhide-button {
+    height: 2em;
+    width: 2em;
 }
