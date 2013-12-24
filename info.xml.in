@@ -25,10 +25,4 @@
         <process command="programs/update_catalog" />
     </post-upgrade>
 
-    <changelog>
-        <version number="1.0.0" date="2012-01-20">
-            <change title="First release" />
-        </version>
-    </changelog>
-
 </module>
