@@ -72,7 +72,7 @@ SQL;
     $action->lay->setBlockData('ADMIN_APPS', $admin_apps);
     
     $user = new_Doc('', $action->user->fid);
-    $action->lay->set("USER_NAME", $user->getTitle());
+    $action->lay->eSet("USER_NAME", $user->getTitle());
     /**
      * Add widget code
      */
