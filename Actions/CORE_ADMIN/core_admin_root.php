@@ -2,8 +2,7 @@
 /*
  * @author Anakeen
  * @package FDL
- */
-
+*/
 
 require_once "FDL/freedom_util.php";
 
@@ -39,12 +38,15 @@ SQL;
     simpleQuery('', $query, $adminApps, false, false, true);
     
     $admin_apps = array();
-    
     foreach ($adminApps as $adminApp) {
         if ($action->user->id != 1) { // no control for user Admin
             if (!$action->HasPermission($adminApp["acl"], $adminApp["id"])) {
                 continue;
             }
+        }
+        if (empty($adminApp["admin_actions_list"]) && empty($adminApp["root_action"])) {
+            continue; // no one available actions detected
+            
         }
         $appUrl = "?app=" . $adminApp["name"];
         if ($adminApp["with_frame"] !== 'Y') {
